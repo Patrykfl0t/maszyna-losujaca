@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Losowanie nazwiska</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background: #f4f4f9;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      background: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #b6c58c;
+    }
+
+    #wynik {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #333;
+    }
+
+    #lista {
+      margin-top: 30px;
+      text-align: left;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <h1>Maszyna losująca NIE-ludkow</h1>
+  <button id="losujBtn">Losuj NIE-ludka</button>
+  <div id="wynik"></div>
+
+  <h2>Wylosowane NIE-ludki:</h2>
+  <ol id="lista"></ol>
+
+  <script>
+    let tab = [
+      "boczek", "arek", "skuli", "lysy", "gorzola", 
+      "rudy", "Ta-Od-Gaming-Night", "dabrowski", "rolnik", 
+      "szymonidas", "gruby", "berta", "sosnica", "autoswir",
+      "c-bul", "mono-Jadro", "DOMI-nator", "owcojebca", "dzagoda-Kurwica",
+      "Cum-il", "SNUS-anek", "leszcz-Delfin", "sniper-na-mirage", "viagra",
+      "bondi-dzieci-trombi", "santa-claus", "kobe", "125cm3-15kM", "super-pro-sigma-100%"
+    ];
+
+    document.getElementById("losujBtn").addEventListener("click", function() {
+      if (tab.length === 0) {
+        document.getElementById("wynik").textContent = "Brak dostępnych NIE-ludkow";
+        return;
+      }
+
+      const index = Math.floor(Math.random() * tab.length);
+      const wylosowana = tab[index];
+
+      // Usuwamy wylosowanego z tablicy
+      tab = tab.filter((osoba, i) => i !== index);
+
+      // Wyświetlamy ostatnio wylosowanego
+      document.getElementById("wynik").textContent = "Wylosowany: " + wylosowana;
+
+      // Dodajemy do listy wylosowanych
+      const li = document.createElement("li");
+      li.textContent = wylosowana;
+      document.getElementById("lista").appendChild(li);
+    });
+  </script>
+</body>
+</html>
